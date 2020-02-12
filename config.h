@@ -12,7 +12,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "JetBrainsMono:size=12", "JoyPixels:pixelsize=17:antialias=true:autohint=true"  };
+static const char *fonts[]          = { "JetBrainsMono:size=14", "JoyPixels:pixelsize=17:antialias=true:autohint=true"  };
 static char dmenufont[]             = "JetBrainsMono:size=10";
 static char normbgcolor[]           = "#3c3836";
 static char normbordercolor[]       = "#282828";
@@ -147,7 +147,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("hover left") },
 	{ MODKEY,			XK_n,		spawn,		SHCMD("st -e newsboat; pkill -RTMIN+6 dwmblocks") },
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD("hover right") },
-	{ MODKEY,			XK_m,		spawn,		SHCMD("st -e ncmpcpp") },
+	{ MODKEY,			XK_m,		spawn,		SHCMD("st -e spotify-tui") },
 	{ MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("amixer sset Master toggle ; pkill -RTMIN+10 dwmblocks") },
 	{ MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev") },
 	{ MODKEY|ShiftMask,		XK_comma,	spawn,		SHCMD("mpc seek 0%") },
@@ -180,7 +180,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Print,	spawn,		SHCMD("dmenurecord kill") },
 	{ MODKEY,			XK_Delete,	spawn,		SHCMD("dmenurecord kill") },
 
-	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("amixer sset Master toggle ; pkill -RTMIN+10 dwmblocks") },
+	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("amixer sset Master toggle ; amixer sset Speaker toggle") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("amixer sset Master 5%+ ; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("amixer sset Master 5%- ; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
