@@ -12,14 +12,14 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
-static char dmenufont[]       = "monospace:size=10";
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
+static const char *fonts[]          = { "JetBrainsMono:size=12", "JoyPixels:pixelsize=17:antialias=true:autohint=true"  };
+static char dmenufont[]             = "JetBrainsMono:size=10";
+static char normbgcolor[]           = "#3c3836";
+static char normbordercolor[]       = "#282828";
+static char normfgcolor[]           = "#ebdbb2";
+static char selfgcolor[]            = "#ebdbb2";
+static char selbordercolor[]        = "#d79921";
+static char selbgcolor[]            = "#282828";
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -27,7 +27,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "‍💻", "🌐", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -88,9 +88,6 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
-	{ MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("prompt \"Leave Xorg?\" \"killall Xorg\"") },
-	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
-	/* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
 	TAGKEYS(			XK_1,		0)
 	TAGKEYS(			XK_2,		1)
 	TAGKEYS(			XK_3,		2)
@@ -100,25 +97,22 @@ static Key keys[] = {
 	TAGKEYS(			XK_7,		6)
 	TAGKEYS(			XK_8,		7)
 	TAGKEYS(			XK_9,		8)
+
+	{ MODKEY|ShiftMask, XK_Escape,	spawn,	SHCMD("prompt \"Leave Xorg?\" \"killall Xorg\"") },
+	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
 	{ MODKEY,			XK_0,		view,		{.ui = ~0 } },
-	{ MODKEY|ShiftMask,		XK_0,		tag,		{.ui = ~0 } },
+	{ MODKEY|ShiftMask,	XK_0,		tag,		{.ui = ~0 } },
 	{ MODKEY,			XK_minus,	spawn,		SHCMD("amixer sset Master 5%- ; pkill -RTMIN+10 dwmblocks") },
-	{ MODKEY|ShiftMask,		XK_minus,	spawn,		SHCMD("amixer sset Master 15%- ; pkill -RTMIN+10 dwmblocks") },
+	{ MODKEY|ShiftMask,	XK_minus,	spawn,		SHCMD("amixer sset Master 15%- ; pkill -RTMIN+10 dwmblocks") },
 	{ MODKEY,			XK_equal,	spawn,		SHCMD("amixer sset Master 5%+ ; pkill -RTMIN+10 dwmblocks") },
-	{ MODKEY|ShiftMask,		XK_equal,	spawn,		SHCMD("amixer sset Master 15%+ ; pkill -RTMIN+10 dwmblocks") },
-	/* { MODKEY,			XK_BackSpace,	spawn,		SHCMD("") }, */
-	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,		SHCMD("prompt \"Reboot computer?\" \"sudo -A reboot\"") },
+	{ MODKEY|ShiftMask,	XK_equal,	spawn,		SHCMD("amixer sset Master 15%+ ; pkill -RTMIN+10 dwmblocks") },
+	{ MODKEY|ShiftMask,	XK_BackSpace,	spawn,		SHCMD("prompt \"Reboot computer?\" \"sudo -A reboot\"") },
 
 	{ MODKEY,			XK_Tab,		view,		{0} },
-	/* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_q,		killclient,	{0} },
-	/* { MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") },
-	/* { MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_e,		spawn,		SHCMD("st -e neomutt ; pkill -RTMIN+12 dwmblocks") },
-	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD("tutorialvids") },
 	{ MODKEY,			XK_r,		spawn,		SHCMD("st -e $FILE") },
-	/* { MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} },
 	/* { MODKEY|ShiftMask,		XK_t,		spawn,		SHCMD("") }, */
 	/* { MODKEY,			XK_y,		spawn,		SHCMD("") }, */
