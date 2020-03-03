@@ -35,8 +35,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	/* { "Gimp",     NULL,       NULL,       0,            1,           -1 }, */
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,       0 << 5,            1,           -1 },
+	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
 };
 
 /* layout(s) */
@@ -98,42 +98,25 @@ static Key keys[] = {
 	TAGKEYS(			XK_8,		7)
 	TAGKEYS(			XK_9,		8)
 
-	{ MODKEY|ShiftMask, XK_Escape,	spawn,	SHCMD("prompt \"Leave Xorg?\" \"killall Xorg\"") },
-	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
-	{ MODKEY,			XK_0,		view,		{.ui = ~0 } },
-	{ MODKEY|ShiftMask,	XK_0,		tag,		{.ui = ~0 } },
-	{ MODKEY,			XK_minus,	spawn,		SHCMD("amixer sset Master 5%- ; pkill -RTMIN+10 dwmblocks") },
-	{ MODKEY|ShiftMask,	XK_minus,	spawn,		SHCMD("amixer sset Master 15%- ; pkill -RTMIN+10 dwmblocks") },
-	{ MODKEY,			XK_equal,	spawn,		SHCMD("amixer sset Master 5%+ ; pkill -RTMIN+10 dwmblocks") },
-	{ MODKEY|ShiftMask,	XK_equal,	spawn,		SHCMD("amixer sset Master 15%+ ; pkill -RTMIN+10 dwmblocks") },
-	{ MODKEY|ShiftMask,	XK_BackSpace,	spawn,		SHCMD("prompt \"Reboot computer?\" \"sudo -A reboot\"") },
+	{ MODKEY|ShiftMask, XK_Escape,	    spawn,	SHCMD("prompt \"Leave Xorg?\" \"killall Xorg\"") },
+	{ MODKEY,			XK_grave,	    spawn,	SHCMD("dmenuunicode") },
+	{ MODKEY,			XK_0,		    view,	{.ui = ~0 } },
+	{ MODKEY|ShiftMask,	XK_0,		    tag,	{.ui = ~0 } },
+	{ MODKEY|ShiftMask,	XK_BackSpace,	spawn,	SHCMD("prompt \"Reboot computer?\" \"sudo -A reboot\"") },
 
-	{ MODKEY,			XK_Tab,		view,		{0} },
-	{ MODKEY,			XK_q,		killclient,	{0} },
-	{ MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") },
-	{ MODKEY,			XK_e,		spawn,		SHCMD("st -e neomutt ; pkill -RTMIN+12 dwmblocks") },
-	{ MODKEY,			XK_r,		spawn,		SHCMD("st -e $FILE") },
-	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} },
-	/* { MODKEY|ShiftMask,		XK_t,		spawn,		SHCMD("") }, */
-	/* { MODKEY,			XK_y,		spawn,		SHCMD("") }, */
-	/* { MODKEY|ShiftMask,		XK_y,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[3]} },
-	/* { MODKEY|ShiftMask,		XK_u,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_i,		incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,		XK_i,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			XK_o,		setlayout,	{.v = &layouts[4]} },
-	/* { MODKEY|ShiftMask,		XK_o,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_p,			spawn,		SHCMD("mpc toggle") },
-	{ MODKEY|ShiftMask,		XK_p,			spawn,		SHCMD("mpc pause ; pauseallmpv") },
-	{ MODKEY,			XK_bracketleft,		spawn,		SHCMD("mpc seek -10") },
-	{ MODKEY|ShiftMask,		XK_bracketleft,		spawn,		SHCMD("mpc seek -120") },
-	{ MODKEY,			XK_bracketright,	spawn,		SHCMD("mpc seek +10") },
-	{ MODKEY|ShiftMask,		XK_bracketright,	spawn,		SHCMD("mpc seek +120") },
+	{ MODKEY,			XK_Tab,             view,		{0} },
+	{ MODKEY,			XK_q,               killclient,	{0} },
+	{ MODKEY,			XK_w,               spawn,		SHCMD("$BROWSER") },
+	{ MODKEY,			XK_e,               spawn,		SHCMD("emacs -e mu4e") },
+	{ MODKEY,			XK_r,               spawn,		SHCMD("st -e $FILE") },
+	{ MODKEY,			XK_t,               setlayout,	{.v = &layouts[0]} },
+	{ MODKEY,			XK_u,               setlayout,	{.v = &layouts[3]} },
+	{ MODKEY,			XK_i,               incnmaster, {.i = +1 } },
+	{ MODKEY|ShiftMask,	XK_i,               incnmaster, {.i = -1 } },
+	{ MODKEY,			XK_o,               setlayout,	{.v = &layouts[4]} },
 	{ MODKEY,			XK_backslash,		view,		{0} },
-	/* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") }, */
 
 	{ MODKEY,			XK_a,		spawn,		SHCMD("st -e alsamixer ; pkill -RTMIN+10 dwmblocks") },
-	/* { MODKEY|ShiftMask,		XK_a,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
 	/* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_d,		spawn,          {.v = dmenucmd } },
@@ -158,8 +141,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("prompt \"Shutdown computer?\" \"sudo -A shutdown -h now\"") },
 	/* { MODKEY,			XK_c,		spawn,		SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title=mpvfloat /dev/video0") },
-	{ MODKEY,			XK_v,		spawn,		SHCMD("st -e $EDITOR -c \"VimwikiIndex\"") },
-	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("\{ killall xcompmgr || setsid xcompmgr & \} ; xwallpaper --zoom ~/.config/wall.png") },
+	{ MODKEY,			XK_v,		spawn,		SHCMD("$EDITOR") },
+	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("\{ killall picom || setsid picom & \} ; xwallpaper --zoom ~/.config/wall.png") },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 	{ MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("hover left") },
 	{ MODKEY,			XK_n,		spawn,		SHCMD("st -e newsboat; pkill -RTMIN+6 dwmblocks") },
@@ -210,12 +193,12 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioMedia,		spawn,		SHCMD("st -e ncmpcpp") },
 	{ 0, XF86XK_PowerOff,		spawn,		SHCMD("prompt \"Shutdown computer?\" \"sudo -A shutdown -h now\"") },
 	{ 0, XF86XK_Calculator,		spawn,		SHCMD("st -e bc -l") },
-	{ 0, XF86XK_Sleep,		spawn,		SHCMD("prompt \"Hibernate computer?\" \"sudo -A zzz -Z\"") },
-	{ 0, XF86XK_WWW,		spawn,		SHCMD("$BROWSER") },
-	{ 0, XF86XK_DOS,		spawn,		SHCMD("st") },
+	{ 0, XF86XK_Sleep,	      	spawn,		SHCMD("prompt \"Hibernate computer?\" \"sudo -A zzz -Z\"") },
+	{ 0, XF86XK_WWW,		    spawn,		SHCMD("$BROWSER") },
+	{ 0, XF86XK_DOS,		    spawn,		SHCMD("st") },
 	{ 0, XF86XK_ScreenSaver,	spawn,		SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
 	{ 0, XF86XK_TaskPane,		spawn,		SHCMD("st -e htop") },
-	{ 0, XF86XK_Mail,		spawn,		SHCMD("st -e neomutt ; pkill -RTMIN+12 dwmblocks") },
+	{ 0, XF86XK_Mail,		    spawn,		SHCMD("st -e neomutt ; pkill -RTMIN+12 dwmblocks") },
 	{ 0, XF86XK_MyComputer,		spawn,		SHCMD("st -e $FILE /") },
 	{ 0, XF86XK_Battery,		spawn,		SHCMD("notify-send \"Battery status\" \"$(batstat)\"") },
 	{ 0, XF86XK_Launch1,		spawn,		SHCMD("xset dpms force off") },
@@ -269,7 +252,7 @@ static Button buttons[] = {
 void
 setlayoutex(const Arg *arg)
 {
-	setlayout(&((Arg) { .v = &layouts[arg->i] }));
+	SETLAYOUT(&((Arg) { .v = &layouts[arg->i] }));
 }
 
 void
