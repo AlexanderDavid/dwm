@@ -252,7 +252,7 @@ static Button buttons[] = {
 void
 setlayoutex(const Arg *arg)
 {
-	SETLAYOUT(&((Arg) { .v = &layouts[arg->i] }));
+	setlayout(&((Arg) { .v = &layouts[arg->i] }));
 }
 
 void
