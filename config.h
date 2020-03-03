@@ -143,7 +143,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title=mpvfloat /dev/video0") },
 	{ MODKEY,			XK_v,		spawn,		SHCMD("$EDITOR") },
 	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("\{ killall picom || setsid picom & \} ; xwallpaper --zoom ~/.config/wall.png") },
-	{ MODKEY,			XK_b,		togglebar,	{0} },
+	/* { MODKEY,			XK_b,		togglebar,	{0} }, */
 	{ MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("hover left") },
 	{ MODKEY,			XK_n,		spawn,		SHCMD("st -e newsboat; pkill -RTMIN+6 dwmblocks") },
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD("hover right") },
