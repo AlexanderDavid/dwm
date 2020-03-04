@@ -10,10 +10,11 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 0;       /* vertical padding of bar */
-static const int sidepad            = 0;       /* horizontal padding of bar */
+static const int vertpad            = 3;       /* vertical padding of bar */
+static const int sidepad            = 5;       /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrainsMono:size=14", "JoyPixels:pixelsize=17:antialias=true:autohint=true"  };
 static char dmenufont[]             = "JetBrainsMono:size=10";
+static const int dmenucenter        = 1;
 static char normbgcolor[]           = "#3c3836";
 static char normbordercolor[]       = "#282828";
 static char normfgcolor[]           = "#ebdbb2";
@@ -77,8 +78,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-c", "-l", "20", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
@@ -97,6 +98,11 @@ static Key keys[] = {
 	TAGKEYS(			XK_7,		6)
 	TAGKEYS(			XK_8,		7)
 	TAGKEYS(			XK_9,		8)
+
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = +1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = -1 } },
+   	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = +1 } },
+   	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = -1 } },
 
 	{ MODKEY|ShiftMask, XK_Escape,	    spawn,	SHCMD("prompt \"Leave Xorg?\" \"killall Xorg\"") },
 	{ MODKEY,			XK_grave,	    spawn,	SHCMD("dmenuunicode") },
@@ -137,7 +143,7 @@ static Key keys[] = {
 
 	{ MODKEY,			XK_z,		incrgaps,	{.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_z,		incrgaps,	{.i = -1 } },
-	{ MODKEY,			XK_x,		spawn,		SHCMD("slock & xset dpms force off; mpc pause ; pauseallmpv") },
+	/* { MODKEY,			XK_x,		spawn,		SHCMD("slock & xset dpms force off; mpc pause ; pauseallmpv") }, */
 	{ MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("prompt \"Shutdown computer?\" \"sudo -A shutdown -h now\"") },
 	/* { MODKEY,			XK_c,		spawn,		SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title=mpvfloat /dev/video0") },
