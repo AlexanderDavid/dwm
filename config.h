@@ -28,8 +28,11 @@ static char selbordercolor[] = "#d79921";
 static char selbgcolor[] = "#282828";
 static char *colors[][3] = {
     /*               fg           bg           border   */
-    [SchemeNorm] = {normfgcolor, normbgcolor, normbordercolor},
-    [SchemeSel] = {selfgcolor, selbgcolor, selbordercolor},
+    {normfgcolor, normbgcolor, normbordercolor},
+    {selfgcolor, selbgcolor, selbordercolor},
+    {"#282828", "#83a598", "#83a598"},
+    {"#282828", "#fe8019", "#fe8019"},
+    {"#282828", "#8ec07c", "#8ec07c"},
 };
 
 /* tagging */
@@ -164,8 +167,8 @@ static Key keys[] = {
 
     {MODKEY, XK_z, incrgaps, {.i = +1}},
     {MODKEY | ShiftMask, XK_z, incrgaps, {.i = -1}},
-    /* { MODKEY,			XK_x,		spawn,		SHCMD("slock & xset dpms force
-       off; mpc pause ; pauseallmpv") }, */
+    /* { MODKEY,			XK_x,		spawn,		SHCMD("slock &
+       xset dpms force off; mpc pause ; pauseallmpv") }, */
     {MODKEY | ShiftMask, XK_x, spawn,
      SHCMD("prompt \"Shutdown computer?\" \"sudo -A shutdown -h now\"")},
     /* { MODKEY,			XK_c,		spawn, SHCMD("")
