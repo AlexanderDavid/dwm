@@ -13,10 +13,10 @@ static const unsigned int borderpx = 3; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
-static const int vertpad = 3;           /* vertical padding of bar */
+static const int vertpad = 5;           /* vertical padding of bar */
 static const int sidepad = 5;           /* horizontal padding of bar */
 static const char *fonts[] = {
-    "JetBrainsMono:size=14",
+    "JetBrains Mono Medium Nerd Font:size=14",
     "JoyPixels:pixelsize=17:antialias=true:autohint=true"};
 static char dmenufont[] = "JetBrainsMono:size=10";
 static const int dmenucenter = 1;
@@ -36,7 +36,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = {"💻", "🌐", "3", "4", "5", "6", "7", "8", "📻"};
+static const char *tags[] = {"", "", "3", "4", "5", "6", "7", "8", ""};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -53,6 +53,7 @@ static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;    /* number of clients in master area */
 static const int resizehints =
     1; /* 1 means respect size hints in tiled resizals */
+
 
 #include "fibonacci.c"
 static const Layout layouts[] = {
@@ -92,7 +93,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *termcmd[] = {"st", NULL};
-static const char *dmenucmd[] = {"dmenu_run", "-c", "-l", "20", NULL};
+static const char *dmenucmd[] = {"dmenu_run", "-c", "-l", "20", "-bw", "2", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = {"st", "-t",     scratchpadname,
                                       "-g", "120x34", NULL};
