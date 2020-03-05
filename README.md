@@ -1,4 +1,5 @@
-# Luke's build of dwm
+# Alex's build of dwm
+Based on [Luke Smith's build](https://github.com/LukeSmithXYZ/dwm).
 
 Here's my build of dwm.
 
@@ -11,6 +12,8 @@ This is suckless, mmmbud, the source code is the documentation! Check out `confi
 ## Patches and features
 
 - reads xresources colors
+- "floating" bar
+- color in dwmbar
 - scratchpad accessible with mod+shift+enter
 - fibbonacci/centered master/etc. other layouts
 - true fullscreen and prevents focus shifting
