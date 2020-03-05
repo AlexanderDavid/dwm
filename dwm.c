@@ -92,7 +92,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast };          /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeWarn, SchemeUrgent }; /* color schemes */
+enum { SchemeNorm, SchemeSel }; /* color schemes */
 enum {
   NetSupported,
   NetWMName,
@@ -797,23 +797,7 @@ void drawbar(Monitor *m) {
   if (m == selmon) { /* status is only drawn on selected monitor */
     drw_setscheme(drw, scheme[SchemeNorm]);
     sw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
-    /* drw_text(drw, m->ww - sw - 2 * sp, 0, sw, bh, 0, stext, 0); */
-    while (1) {
-      if ((unsigned int)*ts > LENGTH(colors)) {
-        ts++;
-        continue;
-      }
-      ctmp = *ts;
-      *ts = '\0';
-      drw_text(drw, m->ww - sw + tx, 0, sw - tx, bh, 0, tp, 0);
-      tx += TEXTW(tp) - lrpad;
-      if (ctmp == '\0') {
-        break;
-      }
-      drw_setscheme(drw, scheme[(unsigned int)(ctmp - 1)]);
-      *ts = ctmp;
-      tp = ++ts;
-    }
+    drw_text(drw, m->ww - sw - 2 * sp, 0, sw, bh, 0, stext, 0);
   }
 
   for (c = m->clients; c; c = c->next) {
