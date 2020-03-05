@@ -14,7 +14,7 @@ static const unsigned int snap = 32;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
 static const int vertpad = 5;           /* vertical padding of bar */
-static const int sidepad = 5;           /* horizontal padding of bar */
+static const int sidepad = 10;          /* horizontal padding of bar */
 static const char *fonts[] = {
     "JetBrains Mono Medium Nerd Font:size=14",
     "JoyPixels:pixelsize=17:antialias=true:autohint=true"};
@@ -24,7 +24,7 @@ static char normbgcolor[] = "#3c3836";
 static char normbordercolor[] = "#282828";
 static char normfgcolor[] = "#ebdbb2";
 static char selfgcolor[] = "#ebdbb2";
-static char selbordercolor[] = "#d79921";
+static char selbordercolor[] = "#8ec07c";
 static char selbgcolor[] = "#282828";
 static char *colors[][3] = {
     /*               fg           bg           border   */
@@ -53,7 +53,6 @@ static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster = 1;    /* number of clients in master area */
 static const int resizehints =
     1; /* 1 means respect size hints in tiled resizals */
-
 
 #include "fibonacci.c"
 static const Layout layouts[] = {
@@ -93,7 +92,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] =
     "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *termcmd[] = {"st", NULL};
-static const char *dmenucmd[] = {"dmenu_run", "-c", "-l", "20", "-bw", "2", NULL};
+static const char *dmenucmd[] = {"dmenu_run", "-c", "-l", "20",
+                                 "-bw",       "2",  NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = {"st", "-t",     scratchpadname,
                                       "-g", "120x34", NULL};
@@ -168,8 +168,8 @@ static Key keys[] = {
 
     {MODKEY, XK_z, incrgaps, {.i = +1}},
     {MODKEY | ShiftMask, XK_z, incrgaps, {.i = -1}},
-    /* { MODKEY,			XK_x,		spawn,		SHCMD("slock &
-       xset dpms force off; mpc pause ; pauseallmpv") }, */
+    /* { MODKEY,			XK_x,		spawn,
+       SHCMD("slock & xset dpms force off; mpc pause ; pauseallmpv") }, */
     {MODKEY | ShiftMask, XK_x, spawn,
      SHCMD("prompt \"Shutdown computer?\" \"sudo -A shutdown -h now\"")},
     /* { MODKEY,			XK_c,		spawn, SHCMD("")
@@ -190,10 +190,6 @@ static Key keys[] = {
     {MODKEY, XK_m, spawn, SHCMD("st -e spotify-tui")},
     {MODKEY | ShiftMask, XK_m, spawn,
      SHCMD("amixer sset Master toggle ; pkill -RTMIN+10 dwmblocks")},
-    {MODKEY, XK_comma, spawn, SHCMD("mpc prev")},
-    {MODKEY | ShiftMask, XK_comma, spawn, SHCMD("mpc seek 0%")},
-    {MODKEY, XK_period, spawn, SHCMD("mpc next")},
-    {MODKEY | ShiftMask, XK_period, spawn, SHCMD("mpc repeat")},
 
     {MODKEY, XK_Page_Up, shiftview, {.i = -1}},
     {MODKEY, XK_Page_Down, shiftview, {.i = 1}},
