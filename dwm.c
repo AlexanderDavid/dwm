@@ -785,6 +785,7 @@ Monitor *dirtomon(int dir) {
 
 int
 drawstatusbar(Monitor *m, int bh, char* stext) {
+  printf("Status bar text: %s\n", stext);
 	int ret, i, w, x, len;
 	short isCode = 0;
 	char *text;
@@ -1244,8 +1245,8 @@ void loadxrdb() {
         XRDB_LOAD_COLOR("dwm.color8", selbordercolor);
         XRDB_LOAD_COLOR("dwm.color0", normbgcolor);
         XRDB_LOAD_COLOR("dwm.color6", normfgcolor);
-        XRDB_LOAD_COLOR("dwm.color0", selfgcolor);
-        XRDB_LOAD_COLOR("dwm.color14", selbgcolor);
+        XRDB_LOAD_COLOR("dwm.foreground", selfgcolor);
+        XRDB_LOAD_COLOR("dwm.background", selbgcolor);
       }
     }
   }
