@@ -21,7 +21,7 @@ static const char *fonts[] = {
 static char dmenufont[] = "JetBrainsMono:size=10";
 static const int dmenucenter = 1;
 static char normbgcolor[] = "#3c3836";
-static char normbordercolor[] = "#282828";
+static char normbordercolor[] = "#3c3836";
 static char normfgcolor[] = "#ebdbb2";
 static char selfgcolor[] = "#ebdbb2";
 static char selbordercolor[] = "#8ec07c";
@@ -175,9 +175,6 @@ static Key keys[] = {
     /* { MODKEY,			XK_c,		spawn, SHCMD("")
      * },
      */
-    {MODKEY | ShiftMask, XK_c, spawn,
-     SHCMD("mpv --no-osc --no-input-default-bindings --input-conf=/dev/null "
-           "--title=mpvfloat /dev/video0")},
     {MODKEY, XK_v, spawn, SHCMD("$EDITOR")},
     {MODKEY | ShiftMask, XK_v, spawn,
      SHCMD("\{ killall picom || setsid picom & \} ; xwallpaper --zoom "
