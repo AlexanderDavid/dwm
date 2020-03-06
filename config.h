@@ -26,6 +26,8 @@ static char normfgcolor[] = "#ebdbb2";
 static char selfgcolor[] = "#ebdbb2";
 static char selbordercolor[] = "#8ec07c";
 static char selbgcolor[] = "#282828";
+static const unsigned int baralpha = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
 static char *colors[][3] = {
     /*               fg           bg           border   */
     {normfgcolor, normbgcolor, normbordercolor},
@@ -35,6 +37,11 @@ static char *colors[][3] = {
     {"#282828", "#8ec07c", "#8ec07c"},
 };
 
+static const unsigned int alphas[][3] = {
+    /*               fg      bg        border     */
+    [SchemeNorm] = {OPAQUE, baralpha, borderalpha},
+    [SchemeSel] = {OPAQUE, baralpha, borderalpha},
+};
 /* tagging */
 static const char *tags[] = {"", "", "3", "4", ""};
 
@@ -106,7 +113,7 @@ static Key keys[] = {
         TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
             TAGKEYS(XK_5, 4)
 
-                    {MODKEY, XK_comma, focusmon, {.i = +1}},
+                {MODKEY, XK_comma, focusmon, {.i = +1}},
     {MODKEY, XK_period, focusmon, {.i = -1}},
     {MODKEY | ShiftMask, XK_comma, tagmon, {.i = +1}},
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = -1}},
