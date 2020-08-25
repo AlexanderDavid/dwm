@@ -73,6 +73,7 @@ static const char *dmenucmd[] = {"dmenu_run", "-c", "-l", "20",
                                  "-bw", "2",  NULL};
 static const char *termcmd[]  = { "st", NULL };
 
+#include "push.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* STACKKEYS(MODKEY,                          focus) */
@@ -92,15 +93,15 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_comma, tagmon, {.i = +1}},
 	{MODKEY | ShiftMask, XK_period, tagmon, {.i = -1}},
 
+      	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+      	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY | ShiftMask,           XK_j,      pushdown,       {0} },
+	{ MODKEY | ShiftMask,           XK_k,      pushup,         {0} },
+
+
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[1]} }, /* bstack */
-	{ MODKEY,			XK_y,		setlayout,	{.v = &layouts[2]} }, /* spiral */
-	{ MODKEY|ShiftMask,		XK_y,		setlayout,	{.v = &layouts[3]} }, /* dwindle */
-	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ShiftMask,		XK_u,		setlayout,	{.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			XK_o,		setlayout,	{.v = &layouts[6]} }, /* centeredmaster */
-	{ MODKEY|ShiftMask,		XK_o,		setlayout,	{.v = &layouts[7]} }, /* centeredfloatingmaster */
-	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[8]} },
+	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[1]} }, /* floating */
+	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[2]} }, /* monocle */
 
 	{MODKEY, XK_0, view, {.ui = ~0}},
 	{MODKEY | ShiftMask, XK_0, tag, {.ui = ~0}},
